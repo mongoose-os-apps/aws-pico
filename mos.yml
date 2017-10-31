@@ -1,0 +1,35 @@
+author: Angus Gratton
+description: ESP32-PICO-KIT breakout board demo for AWS IoT
+version: 0.1
+
+libs_version: ${mos_version}
+modules_version: ${mos_version}
+mongoose_os_version: ${mos_version}
+
+platform: esp32
+
+filesystem:
+  - fs
+
+# List of libraries used by this app, in order of initialisation
+libs:
+  - origin: https://github.com/mongoose-os-libs/arduino-adafruit-bme280
+  - origin: https://github.com/mongoose-os-libs/bh1730
+  - origin: https://github.com/mongoose-os-libs/js-demo-bundle
+
+# Board-specific configuration for the ESP32-PICO-KIT breakout board
+config_schema:
+  - ["i2c.enable", true]
+  - ["i2c.sda_gpio", 22]
+  - ["i2c.scl_gpio", 21]
+  - ["breakout", "o", {title: "Breakout board config"}]
+  - ["breakout.bme280_address", "i", 0x76, {title: "BME280 i2c address"}]
+  - ["breakout.bh1730_address", "i", 0x29, {title: "BH1730 i2c address"}]
+  - ["breakout.ws2812_gpio", "i", 23, {title: "WS2812B signal GPIO"}]
+  - ["breakout.BTN1", "i", 36, {title: "BTN1 GPIO"}]
+  - ["breakout.BTN2", "i", 37, {title: "BTN2 GPIO"}]
+  - ["breakout.BTN3", "i", 38, {title: "BTN3 GPIO"}]
+  - ["breakout.BTN4", "i", 39, {title: "BTN4 GPIO"}]
+
+# Used by the mos tool to catch mos binaries incompatible with this file format
+skeleton_version: 2017-05-18
